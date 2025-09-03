@@ -2,16 +2,25 @@ package org.example.day03;
 
 // ********** 서버소켓 역할 ************
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+
 @Component // MVC패턴은 아니지만 스프링 컨테이너(메모리) 빈(객체) 등록
 public class ChatSocketHandler extends TextWebSocketHandler {
 
     // * 접속된 클라이언트소켓들을 서버가 가지고 있을 예정
+    private static final Map<String , List<WebSocketSession> > 접속명단 = new Hashtable<>();
+    // { 0 : [ "유재석" , "강호동" ] , 1 : [ "서장훈" , "김희철"] }
+    // key : 방번호 , value : 해당 key(방)의 접속된 클라이언트들
 
     // 1. 클라이언트 소켓 과 서버소켓이 연동 되었을때 이벤트
 
@@ -32,5 +41,36 @@ public class ChatSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         System.out.println("=============== *클라이언트 소켓* 메세지 받았다. ==============");
-    }
+
+        // 3-1 : 클라이언트가 보낸 메시지
+        System.out.println(message.getPayload());
+
+        // 3-2 : JSON 형식은 자바기준으로 모르기 때문에 JSON형식을 MAP타입으로 변환
+        // * Restful API 만 @ResponseBody 는 자동으로 JSON <--> MAP 변환 제공 , 소켓은 안됨
+        Map<String, String> msg = objectMapper.readValue(message.getPayload(), Map.class);
+        // 3-3 : 만약에 메세지 타입이 'join' 이면
+        if (msg.get("type").equals("join")) {
+            String room = msg.get("room"); // 방번호
+            String nickName = msg.get("nickName"); // 접속자
+            // 3-4 현재 메세지를 보내온 클라이언트소켓(세선)에 (방번호 와 접속자명)추가 , 로그인 세션 비슷
+            session.getAttributes().put("room", room);     // 브라우저 세션 vs HTTP 세션 vs 웹소켓 세션
+            session.getAttributes().put("nickName", nickName);
+            // 3-5 접속명단에 등록하기
+            if (접속명단.containsKey(room)) { // 만약에 등록할 방번호(key) 가 존재하면
+                접속명단.get(room).add(session); // 해당하는 방번호에 세션 추가
+            } else { // 존재하지 않으면
+                List<WebSocketSession> list = new Vector<>();
+                list.add(session); // 새로운 목록에 세션 추가
+                접속명단.put(room , list); // 새로운 방번호(key) 새로운 목록(list) 을 map(접속명단) 에 등록
+            }
+        }
+            // 0=[StandardWebSocketSession[id=1de220fb-d6dc-6820-0e76-ef554954143c, uri=ws://localhost:8080/chat],
+            // StandardWebSocketSession[id=0963fe0e-0f34-9440-6680-4835194da7ba, uri=ws://localhost:8080/chat]]}
+
+        System.out.println(접속명단); // 확인
+    }// funk end
+    // [*] JSON 타입을 자바 타입을 *변환* 해주는 라이브러리 객체 , ObjectMapper
+    // 주요 메소드
+    // 1. objectMapper.readValue( json 문자열 , 변환할클래스 )
+    private final ObjectMapper objectMapper = new ObjectMapper();
 }
