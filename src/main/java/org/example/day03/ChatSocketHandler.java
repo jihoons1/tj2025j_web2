@@ -81,15 +81,20 @@ public class ChatSocketHandler extends TextWebSocketHandler {
             }
             // 3-6 접속 성공한 닉네임에 [4] 메세지 보내
             alarmMessage(room , nickName+"이 접속 했습니다,");
-        }
+        } // 3-3 end
+        // 3-7 : 만약에 메시지에서 타입(type) 이 'msg' 이면
+        else if (msg.get("type").equals("msg") ) {
+            // 3-8 : 같은방에 위치한 모든 세션들에게 받은 메시지 보내기
+            String room = (String) session.getAttributes().get("room");
+            // 3-9 : 메시지를 보낸 세션의 같은방 번호의 목록들에게 메시지 보내기
+            for (WebSocketSession client : 접속명단.get(room)) {
+                client.sendMessage(message); // 서버가 바은 메시지를 클라이언트들에게 다시 전달
+            } // for end
+        } // 3-7 end
+            System.out.println(접속명단); // 확인
             // 0=[StandardWebSocketSession[id=1de220fb-d6dc-6820-0e76-ef554954143c, uri=ws://localhost:8080/chat],
             // StandardWebSocketSession[id=0963fe0e-0f34-9440-6680-4835194da7ba, uri=ws://localhost:8080/chat]]}
-
-        System.out.println(접속명단); // 확인
     }// funk end
-
-
-
 
     // 4. 개발자(우리) 가 만든 서비스 메소드
     public void alarmMessage( String room , String message) throws Exception

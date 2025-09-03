@@ -46,12 +46,68 @@ client.onmessage = (event) => {
         html += ` <div class="alarm">
             <span> ${message.message} </span>
         </div>`
+    // else if( message.type == 'msg'){
+    //     if(message.from == nickName) { // * 내가 보낸 메시지
+    //         html += ``
+    //         }else{ // 남이 보낸 메시지 
+    //             html += ``
+    //             }
+    // }
+    }else if ( message.type == 'msg' ) {
+        if( message.from == nickName ) {  // *** 내가 보낸 메시지
+            html += `<div class="secontent">
+            <div class="date"> ${message.data} </div>
+            <div class="content"> ${message.message} </div>
+        </div>`
+        }else{ // *** 남이 보낸 메시지 ***
+            html += `<div class="receiveBox">
+            <div class="profileImg">
+                <img  src="default.jpg"/>
+            </div>
+            <div>
+                <div class="recontent">
+                    <div class="memberNic"> ${message.from} </div>
+                    <div class="subcontent">
+                        <div class="content"> ${message.message} </div>
+                        <div class="date"> ${message.data} </div>
+                    </div>
+                </div>
+            </div>
+        </div>`
+            }
     }
+
     // 4-4 구성한 html를 <div class="msgbox"> 에 추가하기 , 대입 = , 추가 +=
     document.querySelector(".msgbox").innerHTML += html;
+
+    // 4-5 만약에 <div class-"msgbox"> 내 내용물이 고정 사이즈보다 커지면 자동 스크롤 내리기
+    const msgbox = document.querySelector('.msgbox');
+    // **** 현재 msgbox의 스크롤 위치를 가장 하단에 배입하기.
+    msgbox.scrollTop = msgbox.scrollHeight
+        
+    // DOM 객체.scrollTop : 현재 dom(마크업)의 스크롤 상단 꼭지점 위치
+    // DOM객체.scrollHeight : 현재 dom(마크업)의 스크롤 전체 길이
 }
 
-
+// [5] 클라이언트 소켓이 서버에게 **일반** 메시지 보내기
 const onMsgSend = async () => {
+    // 1. input으로 부터 입력받은 값 가져오기
+    const msginput = document.querySelector('.msginput');
+    const message = msginput.value;
+    if(message == '')  return // 2. 만약에 입력 값이 없으면 종료
+    // 3. 메세지 구성하기
+    const msg = { type : 'msg' , message : message , // type:메시지종류(msg/join/alarm) , message: 메시지내용물
+         from : nickName , data : new Date().toLocaleString() } // from:보낸사람 , date:현재날짜/시간
 
-}
+    // 5-4 클라이언트소켓이 서버에게 구성한 메세지를 보내기
+    client.send(JSON.stringify(msg) )
+    // 5-5 input 마크업 초기화
+    msginput.value = '';
+    } // func end
+// [6] <input class="msginput"/> 에서 enter 입력 했을떄
+const enterKey = () => {
+    // 만약에 input 에서 enter키(13)를 눌렀을때
+    if(window.event.keyCode == 13){ // keyCOde : k소문자 C대문자
+        onMsgSend(); // [5]메시지함수 호출
+    }
+} // func end
