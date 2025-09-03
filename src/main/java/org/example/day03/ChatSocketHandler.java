@@ -9,10 +9,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 @Component // MVC패턴은 아니지만 스프링 컨테이너(메모리) 빈(객체) 등록
 public class ChatSocketHandler extends TextWebSocketHandler {
@@ -20,7 +17,14 @@ public class ChatSocketHandler extends TextWebSocketHandler {
     // * 접속된 클라이언트소켓들을 서버가 가지고 있을 예정
     private static final Map<String , List<WebSocketSession> > 접속명단 = new Hashtable<>();
     // { 0 : [ "유재석" , "강호동" ] , 1 : [ "서장훈" , "김희철"] }
-    // key : 방번호 , value : 해당 key(방)의 접속된 클라이언트들
+    // key : 방번호 , value : 해당 key(방)의 접속된 클라이언트들/리스트
+
+    // [*] JSON 타입을 자바 타입을 *변환* 해주는 라이브러리 객체 , ObjectMapper
+    // 주요 메소드
+    // 1. objectMapper.readValue( json 문자열 , 변환할클래스명.class ) : 문자열(json) -- > MAP
+    // 2. objectMapper.writeValueAsString( map객체 ) : MAP객체 --> 문자열(json)
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
 
     // 1. 클라이언트 소켓 과 서버소켓이 연동 되었을때 이벤트
 
@@ -34,6 +38,18 @@ public class ChatSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         System.out.println("=============== *클라이언트 소켓*이 나갔다. ==============");
+        String room = (String) session.getAttributes().get("room"); // Object
+        String nickName = (String) session.getAttributes().get("nickName"); // 유효성임 지워도 문제없음
+            // 강제타입변환 : (새로운타입)값
+        // 2-2 : 만약에 방과 닉네임이 일치한 데이터가 접속명단에 존재하면 세션 제거
+        if (room != null && nickName != null ){
+            List<WebSocketSession> list = 접속명단.get( room ); // 해당 방의 key(방번호) 접속(목록)꺼내기
+            list.remove(session);
+            // 2-3 : 세션이 퇴장 했을때 알림 메시지[4] 보내기
+            alarmMessage(room , nickName+"이 퇴장 했습니다,");
+        } // 2-2 end
+        // Map컬렉션 : .put(key ,value) . get(key) .remove(key)
+        // List컬렉션 : add() .get(인덱스)
     }
 
     // 3. 클라이언트 소켓으로 부터 메세지를 받았을때 이벤트
@@ -63,14 +79,32 @@ public class ChatSocketHandler extends TextWebSocketHandler {
                 list.add(session); // 새로운 목록에 세션 추가
                 접속명단.put(room , list); // 새로운 방번호(key) 새로운 목록(list) 을 map(접속명단) 에 등록
             }
+            // 3-6 접속 성공한 닉네임에 [4] 메세지 보내
+            alarmMessage(room , nickName+"이 접속 했습니다,");
         }
             // 0=[StandardWebSocketSession[id=1de220fb-d6dc-6820-0e76-ef554954143c, uri=ws://localhost:8080/chat],
             // StandardWebSocketSession[id=0963fe0e-0f34-9440-6680-4835194da7ba, uri=ws://localhost:8080/chat]]}
 
         System.out.println(접속명단); // 확인
     }// funk end
-    // [*] JSON 타입을 자바 타입을 *변환* 해주는 라이브러리 객체 , ObjectMapper
-    // 주요 메소드
-    // 1. objectMapper.readValue( json 문자열 , 변환할클래스 )
-    private final ObjectMapper objectMapper = new ObjectMapper();
+
+
+
+
+    // 4. 개발자(우리) 가 만든 서비스 메소드
+    public void alarmMessage( String room , String message) throws Exception
+    {
+        // String room : 몇번방에?? , String message : 메시지내용??
+        // throws : 예외처리 던지기 , ㅎ당 메소드에서 모든 예외/오류를 해당 메소드를 호출한곳으로 반환
+        // 4-1 : 보내고자 하는 정보를 map 타입으로 구성
+        Map<String , String > msg = new HashMap<>();
+        msg.put("type", "alarm");
+        msg.put("message" , message);
+        // 4-2 : map 타입을 JSON형식으로 변환 , objectMapper
+        String sendMsg = objectMapper.writeValueAsString(msg);
+        // 4-3 : 현재 같은방(key)에 위치한 모든 세션들에게 '알람' 메세지 보내기
+        for (WebSocketSession session : 접속명단.get(room) ){
+            session.sendMessage( new TextMessage( sendMsg) );
+        }
+    }
 }

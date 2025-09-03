@@ -34,8 +34,21 @@ client.onclose = (event) => {
 
 client.onmessage = (event) => {
     console.log('서버 소켓 메세지 받기');
-    console.log(event);
-    console.log(event.data);
+
+    console.log(event); // 해당 메소드가 왜 실행 되었는지 여러 정보가 들어있는 객체
+    console.log(event.data); // 4-1서버로부터 받은 메세지 확인
+
+    // 4-2 받은 메세지를 json타입으로 변환
+    const message = JSON.parse(event.data);
+    // 4-3 받은 메세지의 type를 확인하여 서로 다른 html 만들어주기.
+    let html = ''
+    if(message.type== 'alarm'){
+        html += ` <div class="alarm">
+            <span> ${message.message} </span>
+        </div>`
+    }
+    // 4-4 구성한 html를 <div class="msgbox"> 에 추가하기 , 대입 = , 추가 +=
+    document.querySelector(".msgbox").innerHTML += html;
 }
 
 
