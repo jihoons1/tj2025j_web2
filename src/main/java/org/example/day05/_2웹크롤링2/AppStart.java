@@ -1,8 +1,7 @@
-package org.example.day05;
+package org.example.day05._2웹크롤링2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 
 @SpringBootApplication
 public class AppStart {
