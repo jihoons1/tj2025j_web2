@@ -31,7 +31,14 @@ const create = createRoot(root);
 // day01
 import Component1 from './example/day01/Component1.jsx'
 import Component2 from './example/day01/Component2.jsx'
+import Component3 from './example/day01/Component3.jsx'
 // create.render( <Component1></Component1>)
 // create.render( <Component1/>)
-create.render( <Component2/>)
-// create.render( <><Component1/> <Component2/></>)  2개 띄우기
+// create.render( <Component2/>)
+// create.render( <Component3/>)
+// create.render( <><Component1/> <Component2/> <Component3/> </>)  // 여러개 띄우기
+// import Task1 from './example/day01/Task1.jsx'
+// create.render( <Task1/>)
+
+import Task2 from './example/day01/Task2.jsx'
+create.render( <Task2/> )

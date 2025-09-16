@@ -1,0 +1,44 @@
+[ 컴포넌트 ]
+    1. 정의 : 리엑트에서 독립적이고 재사용 가능한 함수
+    2. 특징 : HTML+JS+CSS를 하나의 컴포넌트 구성
+[ 컴포넌트 만들기 ]
+    (1) function
+    (2) 컴포넌트명 : 아뭐나 하되 default 컴포넌트 파일명 일치
+    (3) ( props ) : property속성 으로 <컴포넌트 속성=값 속성=값 />
+    (4) { } : 중괄호안에서 JS 와 HTML 작성한다.
+    (5) return : HTML과 js가 혼합된 JSX 문법을 사용할 수 있다. JSP(HTML+JAVA) JSX(HTML+JS0)
+    (6) JSX 파일내 export default 함수를 정의한다.
+
+// [1] 컴포넌트/함수 선언
+export default function Component3( props ){
+    // ------------> JS 코드 START
+    let name = "유재석"
+    // <----------- JS 코드 END : return 전까지
+    
+    // -----------> JSX 코드 START :  return 부터는 JSX 문법  
+    return <div> { name } 입니다. </div>
+    // return 반환값 1개 만 가능 하지만  괄호()안에 마크업 태그로 묶어서 사용하면 여러개의 div 사용 가능 즉] return ( 마크업 <div> 1 </div>  <div> 2 </div> 마크업 )
+    // <----------- JSX 코드 END
+} // func end
+
+[ 컴포넌트 불러오기 ]
+    (1) 다른 js(jsx) 파일 일때
+        import 컴포넌트명 from 'jsx파일경로'
+        <컴포넌트명 />
+
+    (2) 같은 js(jsx) 파일 일떄
+        <컴포넌트명 />
+        <input /> [O]
+    조건 2: 반드시 전체를 감싸는  상위 요소(dom) 필수
+        <div> </div> 또는 <> </>
+        1. return <div> 내용물 </div>
+        2. return <> 내용물 </>
+    조건3 : 2줄 이상 요소가 되는 경우 관례적으로 ( ) 소괄호 묶는다.
+        return (<>
+        
+                </>);
+    2. JSX 문법 에서 JS표현식을 사용 , 표현식이란 정의/선언/생성 부 불가능하다.
+        <div> { JS코드 } </div>
+
+    3. JSX 주석 , HTML 주석은 불가능하다. 즉 { } 중괄호 안에서 JS주석 사용하다.
+        { /* 주석처리 */ }

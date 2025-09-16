@@ -13,7 +13,7 @@
 */
 // [1] 컴포넌트 생성
 function Component1( props ){
-    return <h1> 2025-09-16 </h1>
+    return <h1> Component1 </h1>
 
 } // func end
 // [2] 컴포넌트 기본 내보내기
