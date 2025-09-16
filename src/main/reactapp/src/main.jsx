@@ -21,10 +21,17 @@ const create = createRoot(root);
 
 // 4. ROOT에 렌더링할 컴포넌트(화면함수)
   // 4-1 : 렌더링할 컴포넌트(함수) 가져오기
-import App from './App.jsx'
-  // 4-2 : 렌더링하기
-  create.render(<App></App> );
+// import App from './App.jsx'
+  // 5 : 컴포넌트 렌더링하기
+  // create.render(<App></App> );
 
 // * 2 ~ 4-2 요약가능 , 즉] createRoot(document.querySelector('#root) ).render( <최초출력할함수명 />);
 // createRoot( document.querySelector('#root') ).render( <App /> );
-  // ** 순수 JS 방식
+  
+// day01
+import Component1 from './example/day01/Component1.jsx'
+import Component2 from './example/day01/Component2.jsx'
+// create.render( <Component1></Component1>)
+// create.render( <Component1/>)
+create.render( <Component2/>)
+// create.render( <><Component1/> <Component2/></>)  2개 띄우기
