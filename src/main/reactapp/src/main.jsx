@@ -30,15 +30,26 @@ const create = createRoot(root);
   
 // day01
 import Component1 from './example/day01/Component1.jsx'
-import Component2 from './example/day01/Component2.jsx'
-import Component3 from './example/day01/Component3.jsx'
-// create.render( <Component1></Component1>)
 // create.render( <Component1/>)
+import Component2 from './example/day01/Component2.jsx'
 // create.render( <Component2/>)
+import Component3 from './example/day01/Component3.jsx'
 // create.render( <Component3/>)
-// create.render( <><Component1/> <Component2/> <Component3/> </>)  // 여러개 띄우기
-// import Task1 from './example/day01/Task1.jsx'
+import Task1 from './example/day01/Task1.jsx'
 // create.render( <Task1/>)
-
 import Task2 from './example/day01/Task2.jsx'
-create.render( <Task2/> )
+// create.render( <Task2/> )
+
+// day02
+import Component4 from './example/day02/Component4.jsx'
+// create.render( <Component4/> )
+import Component5 from './example/day02/Component5.jsx';
+// create.render(<Component5/> )
+import Component6 from './example/day02/Component6.jsx';
+// create.render(<Component6/> )
+import Component7 from './example/day02/Component7.jsx';
+// create.render(<Component7/>)
+import Test3 from './example/day02/test3.jsx';
+// create.render(<Test3/>)
+import Test4 from './example/day02/Test4.jsx';
+create.render(<Test4/> )
