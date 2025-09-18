@@ -3,7 +3,6 @@ package org.example.day07.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.day07.model.dto.BoardDto;
 import org.example.day07.service.BoardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/board")
 @RequiredArgsConstructor
+@CrossOrigin( value = "http://localhost:5173") // 리액트 서버와 CORS 통신을 허용
+// @CrossOrigin( VALUE = "허용할주소") // CORS( 서로 다른 서버간의 요청/응답 허용 )  정책을 설정
 public class BoardController {
     private final BoardService boardService;
 

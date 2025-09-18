@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.day07.model.dto.BoardDto;
 import org.example.day07.model.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 

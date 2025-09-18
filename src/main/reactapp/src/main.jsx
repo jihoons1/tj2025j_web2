@@ -52,4 +52,12 @@ import Component7 from './example/day02/Component7.jsx';
 import Test3 from './example/day02/test3.jsx';
 // create.render(<Test3/>)
 import Test4 from './example/day02/Test4.jsx';
-create.render(<Test4/> )
+// create.render(<Test4/> )
+import Component8 from './example/day03/Component8.jsx';
+// create.render(<Component8/> );
+import Component9 from './example/day03/Component9.jsx';
+// create.render(<Component9/> )
+import Component10 from './example/day03/Component10.jsx';
+// create.render(<Component10/>)
+import Task5 from './example/day03/Task5.jsx';
+create.render(<Task5/> )

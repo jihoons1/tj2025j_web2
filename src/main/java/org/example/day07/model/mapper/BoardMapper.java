@@ -9,7 +9,7 @@ import java.util.List;
 public interface BoardMapper {
 
     // 게시물 등록
-    @Insert("insert into board(bcontent ,bwriter )value( #{bcontent} , # { bwriter} ) ")
+    @Insert("insert into board(bcontent ,bwriter )values( #{bcontent} , #{bwriter} ) ")
     public boolean boardWrite(BoardDto dto);
     // 게시물 전체 조회
     @Select("select * from board ")
