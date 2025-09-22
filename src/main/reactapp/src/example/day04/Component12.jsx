@@ -61,6 +61,7 @@ export default function Component12(props){
                 <Link to="/about"> 소개페이지 </Link>
                 <Link to="/mypage"> 마이페이지1(쿼리스트림x) </Link>
                 <Link to="/mypage?name=유재석&age=40"> 마이페이지2(쿼리스트림o) </Link>
+                <Link to="/product"> 제품소개페이지(path x ) </Link>
                 <Link to="/product/코카콜라/123"> 제품소개페이지(path O ) </Link>
             </ul>
             <Routes> { /* 가상의 URL 정의하고 정의한 URL 과 매핑할 컴포넌트 정의 */}
