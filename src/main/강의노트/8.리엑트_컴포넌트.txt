@@ -23,9 +23,11 @@ export default function Component3( props ){
 
 [ 컴포넌트 불러오기 ]
     (1) 다른 js(jsx) 파일 일때
-        import 컴포넌트명 from 'jsx파일경로'
+        export default  : import 컴포넌트명 from 'jsx파일경로'
+        
         <컴포넌트명 />
 
+[ JSX ]
     (2) 같은 js(jsx) 파일 일떄
         <컴포넌트명 />
         <input /> [O]
@@ -42,3 +44,27 @@ export default function Component3( props ){
 
     3. JSX 주석 , HTML 주석은 불가능하다. 즉 { } 중괄호 안에서 JS주석 사용하다.
         { /* 주석처리 */ }
+
+[ props ]
+    1. 정의 : props는 부모 컴포넌트가 자식 컴포넌트 에게 데이터를 전달하는 매개변수
+    2. 역할 : 컴포넌트의 재사용, 데이터를 다른 곳으로 내려준다.
+    3. 특징 : 
+        1. 읽기전용( 물려받은 prps데이터는 수정이 불가능하다. )
+        2. 단방향( 자식이 부모에게 전달이 안된다. )
+    4. 사용법
+            function 부모컴포넌트(props){
+                return (<> <자식컴포넌트 속성명 = {값} 속성명2 = {값} /> </>)
+            }
+        방법1) 부모컴포넌트 로 부터 전달받은 속성명과 값이 props 객체내 전달된다.
+            function 자식컴포넌트(props){ return (<> </> ) }
+        방법2) 부모컴포넌트 로 부터 전달받은 속성명과 값이 props 객체ㅐㄴ 전달되고, 구문 분해로 각 변수에 저장된다.
+            function 자식컴포넌트( { 속성명1 , 속성명2 } ){ return (<> </> ) }
+[ HTML(가상DOM) 이벤트 ] 
+    HTML dom
+        onclick    순수HTML , 직접 함수
+        * onclick = "함수명( )"
+    REACT DOM
+        onClick    가상HTML , 함수 전달
+        * onClick = { 함수명 }
+        * onClick = { ( e ) => { 함수명( e, 매개변수 ); } }
+        * onClick = { ( e ) => { console.log( e ); } }

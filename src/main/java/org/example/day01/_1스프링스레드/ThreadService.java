@@ -15,7 +15,7 @@ public class ThreadService {
             System.out.println("ThreadController.thread\n"+result);
             // 만약에 서비스 처리가 늦어진다면 HTTP의 반환?? **
             try{ Thread.sleep(1000); // 현재 스레드 1초간 일시정지 , * Talenn Send 시 HTTP 응답 10초 후 다시 가능
-            }catch (Exception e) { System.out.println(e); } // 예외 처리
+            }catch (Exception e) { System.out.println("예외"+e); } // 예외 처리
         } // for end
         // 위 누적값 반환
         return result;
