@@ -1,7 +1,6 @@
 package org.example.실습.평가5.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.example.실습.평가5.controller.UserController;
 import org.example.실습.평가5.model.dto.UserDto;
 import org.example.실습.평가5.model.mapper.UserMapper;
@@ -14,30 +13,33 @@ import java.util.List;
 public class UserService {
     private final UserMapper userMapper;
 
-    // 등록
+    // 1. 영화 등록
+    public boolean movieAdd(UserDto dto){
+        return userMapper.movieAdd(dto);
+    }
+
+    // 2. 영화 삭제
+    public boolean movieDel(int mno){
+        return userMapper.movieDel(mno);
+    }
+
+    // 3. 영화 목록 조회
+    public List<UserDto> moviePrint(){
+        return userMapper.moviePrint();
+    }
+
+    // 4. 토론 글 작성
     public boolean userAdd(UserDto dto){
-        System.out.println("UserService.userAdd");
-        boolean result = userMapper.userAdd(dto);
-        return result;
+        return userMapper.userAdd(dto);
     }
 
-    // ㅈ회
-    public List<UserDto> userPrint(){
-        System.out.println("UserService.userPrint");
-        List<UserDto> dto = userMapper.userPrint();
-        return dto;
-    }
-    // ㅌ론 조회
-    public List<UserDto> userPrint2(int mno, String mgenre){
-        System.out.println("UserService.userPrint2");
-        List<UserDto> dto = userMapper.userPrint2(mno , mgenre);
-        return dto;
-    }
-
-    // 삭제
+    // 5. 토론 글 삭제
     public boolean userDel(int sno, String spwd){
-        System.out.println("UserService.userDel");
-        boolean result = userMapper.userDel(sno,spwd);
-        return result;
+        return userMapper.userDel(sno, spwd);
+    }
+
+    // 6. 영화별 토론 조회
+    public List<UserDto> userPrint2(int mno){
+        return userMapper.userPrint2(mno);
     }
 }
