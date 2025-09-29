@@ -1,0 +1,62 @@
+2025-09-29T10:43:17.055+09:00  INFO 21476 --- [main] org.example.day10.AppStart               : Starting AppStart using Java 17.0.15 with PID 21476 (C:\Users\TJ-BU-702-P17\Desktop\tj2025j_web2\build\classes\java\main started by TJ-BU-702-P17 in C:\Users\TJ-BU-702-P17\Desktop\tj2025j_web2)
+2025-09-29T10:43:17.055+09:00  INFO 21476 --- [main] org.example.day10.AppStart               : No active profile set, falling back to 1 default profile: "default"
+2025-09-29T10:43:18.183+09:00  INFO 21476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-29T10:43:18.199+09:00  INFO 21476 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-29T10:43:18.199+09:00  INFO 21476 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-29T10:43:18.261+09:00  INFO 21476 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-29T10:43:18.277+09:00  INFO 21476 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1165 ms
+2025-09-29T10:43:19.021+09:00  INFO 21476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-29T10:43:19.037+09:00  INFO 21476 --- [main] org.example.day10.AppStart               : Started AppStart in 2.496 seconds (process running for 2.877)
+2025-09-29T10:43:25.282+09:00  INFO 21476 --- [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-29T10:43:25.282+09:00  INFO 21476 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-29T10:43:25.282+09:00  INFO 21476 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-09-29T10:43:25.315+09:00  INFO 21476 --- [http-nio-8080-exec-3] org.example.day10.BookController         : 서비스의 흐름/데이터 상태 사용된다. 
+2025-09-29T10:43:25.315+09:00  WARN 21476 --- [http-nio-8080-exec-3] org.example.day10.BookController         : 잠재적 문제 사용된다.
+2025-09-29T10:43:25.315+09:00 ERROR 21476 --- [http-nio-8080-exec-3] org.example.day10.BookController         : 예외/실패 상황 사용된다.
+2025-09-29T10:44:24.443+09:00  INFO 21476 --- [http-nio-8080-exec-4] org.example.day10.BookController         : 서비스의 흐름/데이터 상태 사용된다. 
+2025-09-29T10:44:24.443+09:00  WARN 21476 --- [http-nio-8080-exec-4] org.example.day10.BookController         : 잠재적 문제 사용된다.
+2025-09-29T10:44:24.443+09:00 ERROR 21476 --- [http-nio-8080-exec-4] org.example.day10.BookController         : 예외/실패 상황 사용된다.
+2025-09-29T10:51:27.138+09:00  INFO 22904 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-29T10:51:27.138+09:00  INFO 22904 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-29T10:51:27.214+09:00  INFO 22904 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-29T10:52:09.514+09:00  INFO 12568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-29T10:52:09.530+09:00  INFO 12568 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-29T10:52:09.530+09:00  INFO 12568 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-09-29T10:52:09.604+09:00  INFO 12568 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-29T10:52:09.604+09:00  INFO 12568 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1166 ms
+2025-09-29T10:52:10.378+09:00  INFO 12568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-29T10:53:42.832+09:00  INFO 8296 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-29T10:53:42.834+09:00  INFO 8296 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-09-29T10:53:42.877+09:00  INFO 8296 --- [http-nio-8080-exec-1] org.example.day10.BookController         : 서비스의 흐름/데이터 상태 사용된다. 
+2025-09-29T10:53:42.878+09:00  WARN 8296 --- [http-nio-8080-exec-1] org.example.day10.BookController         : 잠재적 문제 사용된다.
+2025-09-29T10:53:42.879+09:00 ERROR 8296 --- [http-nio-8080-exec-1] org.example.day10.BookController         : 예외/실패 상황 사용된다.
+2025-09-29T10:53:43.508+09:00  INFO 8296 --- [http-nio-8080-exec-3] org.example.day10.BookController         : 서비스의 흐름/데이터 상태 사용된다. 
+2025-09-29T10:53:43.508+09:00  WARN 8296 --- [http-nio-8080-exec-3] org.example.day10.BookController         : 잠재적 문제 사용된다.
+2025-09-29T10:53:43.508+09:00 ERROR 8296 --- [http-nio-8080-exec-3] org.example.day10.BookController         : 예외/실패 상황 사용된다.
+2025-09-29T10:53:50.686+09:00  INFO 8296 --- [http-nio-8080-exec-2] org.example.day10.BookController         : 서비스의 흐름/데이터 상태 사용된다. 
+2025-09-29T10:53:50.686+09:00  WARN 8296 --- [http-nio-8080-exec-2] org.example.day10.BookController         : 잠재적 문제 사용된다.
+2025-09-29T10:53:50.686+09:00 ERROR 8296 --- [http-nio-8080-exec-2] org.example.day10.BookController         : 예외/실패 상황 사용된다.
+2025-09-29T10:53:56.011+09:00  INFO 8296 --- [http-nio-8080-exec-4] org.example.day10.BookController         : 서비스의 흐름/데이터 상태 사용된다. 
+2025-09-29T10:53:56.012+09:00  WARN 8296 --- [http-nio-8080-exec-4] org.example.day10.BookController         : 잠재적 문제 사용된다.
+2025-09-29T10:53:56.012+09:00 ERROR 8296 --- [http-nio-8080-exec-4] org.example.day10.BookController         : 예외/실패 상황 사용된다.
+2025-09-29T10:59:58.779+09:00  INFO 1168 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-29T10:59:58.781+09:00  INFO 1168 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-29T10:59:58.823+09:00  INFO 1168 --- [http-nio-8080-exec-1] org.example.day10.BookController         : 서비스의 흐름/상태 사용된다.
+2025-09-29T10:59:58.826+09:00  WARN 1168 --- [http-nio-8080-exec-1] org.example.day10.BookController         : 잠재적 문제 사용된다
+2025-09-29T10:59:58.826+09:00 ERROR 1168 --- [http-nio-8080-exec-1] org.example.day10.BookController         : 예외/실패 상황 사용된다
+2025-09-29T11:01:19.837+09:00  WARN 1168 --- [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-09-29T11:02:03.301+09:00  WARN 1168 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-09-29T11:02:31.874+09:00  INFO 1168 --- [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-29T11:02:31.960+09:00  INFO 1168 --- [http-nio-8080-exec-6] i.opentelemetry.api.GlobalOpenTelemetry  : AutoConfiguredOpenTelemetrySdk found on classpath but automatic configuration is disabled. To enable, run your JVM with -Dotel.java.global-autoconfigure.enabled=true
+2025-09-29T11:02:32.233+09:00  INFO 1168 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c412dc1
+2025-09-29T11:02:32.239+09:00  INFO 1168 --- [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-29T11:02:49.712+09:00  INFO 1168 --- [http-nio-8080-exec-7] org.example.day10.BookController         : 서비스의 흐름/상태 사용된다.
+2025-09-29T11:02:49.712+09:00  WARN 1168 --- [http-nio-8080-exec-7] org.example.day10.BookController         : 잠재적 문제 사용된다
+2025-09-29T11:02:49.712+09:00 ERROR 1168 --- [http-nio-8080-exec-7] org.example.day10.BookController         : 예외/실패 상황 사용된다
+2025-09-29 11:04:10 Initializing Servlet 'dispatcherServlet' 
+2025-09-29 11:04:10 Completed initialization in 0 ms 
+2025-09-29 11:04:10 Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported] 
+2025-09-29 11:04:18 HikariPool-1 - Starting... 
+2025-09-29 11:04:18 AutoConfiguredOpenTelemetrySdk found on classpath but automatic configuration is disabled. To enable, run your JVM with -Dotel.java.global-autoconfigure.enabled=true 
+2025-09-29 11:04:19 HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4edadb55 
+2025-09-29 11:04:19 HikariPool-1 - Start completed. 
