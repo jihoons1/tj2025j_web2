@@ -75,14 +75,18 @@ import App from './example/day06/App.jsx'
 import { Provider } from 'react-redux';
 import store, { persistor } from './example/day06/store/store.js';
 import { PersistGate } from 'redux-persist/integration/react';
-create.render( 
-    <Provider store={ store }>
-        <PersistGate loading = { null } persistor={ persistor }>
-            <App /> 
-        </PersistGate>
-    </Provider>
-);
+// create.render( 
+//     <Provider store={ store }>
+//         <PersistGate loading = { null } persistor={ persistor }>
+//             <App /> 
+//         </PersistGate>
+//     </Provider>
+// );
 
 // day07
 import Component14 from './example/day07/Component14.jsx';
 // create.render(<Component14/>)
+
+// day 08
+import Component15 from './example/day08/Conponent15.jsx';
+create.render(<Component15/> )
