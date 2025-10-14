@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.실습.실습4.XmlMapper">
+
+    <!-- 등록 -->
+    <insert id="bookadd" parameterType="org.example.실습.실습4.BookDto" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO rentals(member , book_id , id)
+        values( #{member} , #{book_id} , #{id} )
+    </insert>
+
+    <!-- 조회 -->
+    <select id="loanbook" resultType="org.example.실습.실습4.BookDto">
+        select id book_id from rentals
+        <where>
+            <if test="book_id != null and id != null">
+                and member,id like concat( #{member} , #{id} )
+            </if>
+            <if test="book_id = null and id = null">
+                and member , id
+            </if>
+        </where>
+    </select>
+    
+    <!-- 일괄 등록 -->
+    <insert id="addbo"
+            parameterType="list"
+            useGeneratedKeys="true"
+            keyProperty="id">
+            insert into books(title,stock) values
+                <foreach collection="list" item="i" separator=",">
+                    ( #{i.title} , #{i.stock} )
+                </foreach>
+    </insert>
+
+
+</mapper>
