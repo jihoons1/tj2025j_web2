@@ -2,7 +2,7 @@
     CREATE TABLE books (
         id INT NOT NULL AUTO_INCREMENT ,    -- 도서번호
         title VARCHAR(255) NOT NULL,        -- 도서 명
-        stock INT NOT NULL DEFAULT 0,       -- 도서 재고	
+        stock INT NOT NULL DEFAULT 0,       -- 도서 재고
         price int not null ,				-- 가격
         PRIMARY KEY (id)
     );
