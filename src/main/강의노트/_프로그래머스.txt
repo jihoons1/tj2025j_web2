@@ -35,3 +35,4 @@ https://school.programmers.co.kr/learn/courses/30/lessons/299305
 SELECT ED.ID , ( SELECT COUNT(*) FROM ECOLI_DATA WHERE PARENT_ID = ED.ID ) AS CHILD_COUNT
 FROM ECOLI_DATA ED
 ORDER BY ED.ID ASC;
+
