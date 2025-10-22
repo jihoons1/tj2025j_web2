@@ -9,6 +9,7 @@ import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.web2.model.dto.UserDto;
+import org.web2.service.JwtService;
 import org.web2.service.UserService;
 
 @RequiredArgsConstructor
@@ -16,6 +17,7 @@ import org.web2.service.UserService;
 @RequestMapping("/user") // 공통 url
 public class UserController {
     private final UserService userService;
+    private final JwtService jwtService;
 
     // 회원가입
     @PostMapping("/signup")
@@ -43,7 +45,11 @@ public class UserController {
             // 안전장치 필요하다.
             // Cookie cookie = new Cookie("쿠키명" , 값 );
             // response.addCookie( 생성한쿠키 );
-            Cookie cookie = new Cookie("loginUser", result.getUid());
+            // Cookie cookie = new Cookie("loginUser", result.getUid());
+
+            // **** 쿠키에 저장하는 회원정보를 토큰으로 저장하기 ******
+            Cookie cookie = new Cookie( "loginUser" , jwtService.createToken(result.getUid() , result.getUrole() ) );
+
             // 클라이언트 에서 해당 쿠키를 노출(탈취) 방지 = 주로 민감한정보
             cookie.setHttpOnly(true); // .setHttpsOnly( true ) : 무조건 Http 에서만 사용. 즉] JS 접근 불가능
             cookie.setSecure(false); // http 이용하여 탈취 하더라도 암호화 , 단 https 에서만 가능
@@ -64,10 +70,19 @@ public class UserController {
         if (cookies != null) { // 만약에 쿠키들이 존재하면
             for (Cookie c : cookies) { // 하나씩 쿠키들을 반복하여
                 if (c.getName().equals("loginUser")) { // "loginUser" 쿠키명과 같다면
-                    String uid = c.getValue(); // 쿠키의 저장된 값 반환 ex] uid
-                    // 3-3 : 서비스를 호출하여 내정보 조회
-                    UserDto result = userService.myInfo(uid);
-                    return ResponseEntity.ok(result); // 로그인 상태로 회원정보 조회
+                    // String uid = c.getValue(); // 쿠키의 저장된 값 반환 ex] uid
+
+                    // ***** 쿠키의 저장된 토큰 반환 하기 ******
+                    String token = c.getValue(); // 쿠키의 저장된 토큰 반환
+                    boolean checked = jwtService.checkToken(token); // 토큰 검증
+                    if (checked) { // 만약에 토큰이 유효하면
+                        String uid = jwtService.getUid(token); // 토큰에 저장된 클레임(회원아이디) 추출하기
+                        // 3-3 : 서비스를 호출하여 내정보 조회
+                        UserDto result = userService.myInfo(uid);
+                        return ResponseEntity.ok(result); // 로그인 상태로 회원정보 조회
+                    }//
+                    // 만약에 토큰이 유효하지 않으면
+                    return ResponseEntity.ok(null); // 비어있음
                 }
             }
         }
