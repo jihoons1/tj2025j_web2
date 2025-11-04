@@ -31,11 +31,39 @@
         - 객체 = 클래스의 인스턴스
         - new Member( 1 , "유재석" )
     2. 사용법
-        1) 선언 : 클래스 위에 @Entity 주입한다.
-        + 엔티티 1개당 @Id 필수다 . ( primary key)
+        1) 선언 : 클래스 위에 @Entity 주입한다. , + 엔티티 1개당 @Id 필수다 . ( primary key)
         2) Entity 매핑 설정 , application.properties
+            2-1) spring.jpa.hibernate.ddl-auto =
+                create : Entity 테이블 (삭제후)생성
+                update : Entity 테이블 (존재하면)수정 (존재하지않으면)생성
+                none : 아무런 기능 없음(기본값)
+            2-2)
+                # JPA 가 처리한 SQL 콘솔에 표시한다.
 
 [ 리포지토리 ] JPA Repository
     1. 정의 : 기본적인 CRUD 작업을 제공하는 인퍼에스 , +동적쿼리
     2. 사용법 : extends JapRepository< T , ID > 상속 받는다.
+        1. 인터페이스 생성
+        2. extends JapRepository< T , ID > 상송받는다.
+            T : 조작할 엔티티클래스명
+            ID : 조작할 엔티티클래스의 PK필드(@ID)의 자료형 *단 기본자료형 불가능*
+        3. 인터페이스 위에 @Repository 주입한다.
+
+[ JPA 기본함수 ]
+    1.  .save( 저장할엔티티 )          : 저장할 엔티티가 존재하지않으면 INSERT, 존재하면 UPDATE  * 영속화 : 영속된 결과를 반환한다.
+    2.  .findAll( )                   : 모든 엔티티 조회 , List타입 반환
+    3. .deleteById( PK값 )           : 특정한 PK의 엔티티 1개 조회 * Optional타입 반환값
+    4. .findById( PK값 )             : 특정한 pk값의 엔티티 1개 조회
+    * 수정함수는 존재하지 않는다<영속성 특징>
+    - 영속성을 갖는 시점 : save,findAll,findById 등등 반환 된 엔티티가 영속된 엔티티
+    - @Transactional 갖는 클래스 또는 함수내 . setter 함수 이용하여 수정처리한다.
+    - 관례적으로 엔티티는 MVC패턴내 서비스에서만 사용한다. < 엔티티 노출 하지 않는다 > DTO/VO 활용
+
+[ Optional ] : null 관련된 메소드 기능 제공하는 클래스
+    1. isPresent() : null 이면 false , 아니면 true
+    2. .get() : 객체 반환
+    3. .orElse( null일때 값 )
+    4. .orElseThrow( 예외객체 )
+
+
 

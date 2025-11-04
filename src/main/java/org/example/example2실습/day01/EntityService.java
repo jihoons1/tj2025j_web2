@@ -23,7 +23,7 @@ public class EntityService {
         return entityList;
     }
 
-    @Transactional // 태랜잭션 여러개 sql
+    @Transactional // 트랜잭션 여러개 sql
     public EntityEntity update(EntityEntity entityEntity){
         Optional<EntityEntity> optional = entityRepository.findById(entityEntity.getBookid());
         if (optional.isPresent() ) {
