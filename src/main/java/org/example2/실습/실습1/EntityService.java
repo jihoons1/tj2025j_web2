@@ -1,4 +1,4 @@
-package org.example.example2실습.day01;
+package org.example2.실습.실습1;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 // 롬복
 @Data@Builder@NoArgsConstructor@AllArgsConstructor
 
-public class GoodsEntity {
+public class GoodsEntity extends BaseTime{
 
     @Id // PK필드 주입 :: JPA는 엔티티 1개당 PK필드는 1개 이상 필수이다.
     @GeneratedValue( strategy = GenerationType.IDENTITY ) // auto_increment 주입 :: 자동값 증가 | MYSQL 에서만 가능
@@ -29,4 +29,19 @@ public class GoodsEntity {
 
     @Column( columnDefinition = "varchar(100) default '제품설명' not null " )
     private String gdesc; // 제품설명
+
+    // +++++ Entity --> Dto ++++++++++
+    // ++ Service -> Controller ++
+    public GoodsDto toDto(){
+        // 객체생성방법1 : new 클래스명( 값, 값 );
+        // 객체생성방법2 : 클래스명.builder().속성명(값).속성명(값).build()
+        return GoodsDto.builder()
+                .gno( this.gno )    // this이란? 현재 메소드를 호출하는 인스턴스(객쳬)
+                .gname( this.gname )
+                .gprice( this.gprice )
+                .gdesc( this.gdesc )
+                .update_date( this.getUpdateDate().toString() )
+                .create_date( this.getCreateDate().toString() )
+                .build();
+    }
 }
