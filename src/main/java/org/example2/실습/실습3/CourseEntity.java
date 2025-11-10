@@ -11,7 +11,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table( name = "coures")
+@Entity
+@Table( name = "course")
 public class CourseEntity {
 
     @Id
@@ -22,7 +23,7 @@ public class CourseEntity {
     private String courseName; // 과정명
 
 
-    @OneToMany( mappedBy = "couresEntity")
+    @OneToMany( mappedBy = "courseEntity" , cascade = CascadeType.ALL)
     @ToString.Exclude
     @Builder.Default
     private List<EnrollEntity>

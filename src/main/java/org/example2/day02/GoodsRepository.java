@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository // 빈 등록
 // 지정한 엔티티들을 조작하는 인터페이스
-public interface GoodsRepository extends JpaRepository<GoodsEntity,Integer> {
+public interface GoodsRepository
+        extends JpaRepository<GoodsEntity,Integer> {
 }

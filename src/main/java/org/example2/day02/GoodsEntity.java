@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 // 테이블 이름 정의 생략시 클래스명으로 테이블명 정의
 @Table( name = "goods")
 // 롬복
-@Data@Builder@NoArgsConstructor@AllArgsConstructor
+@Data@Builder@NoArgsConstructor@AllArgsConstructor // 롬북
 
 public class GoodsEntity extends BaseTime{
 

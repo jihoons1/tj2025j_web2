@@ -1,15 +1,16 @@
 package org.example2.실습.실습3;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table( name = "student")
 
 public class StudentEntity {
@@ -20,7 +21,9 @@ public class StudentEntity {
 
     private String studentName; // 학생명
 
-    @ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
-    @JoinColumn( name = "enrollId")
-    private EnrollEntity enrollEntity;
+    @OneToMany( mappedBy = "studentEntity" , cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @Builder.Default
+    private List<EnrollEntity>
+            enrollList = new ArrayList<>();
 }
