@@ -1,18 +1,41 @@
 package org.example2.day04.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example2.day04.model.dto.TodoDto;
 import org.example2.day04.service.TodoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/todo")
+@CrossOrigin (value = "*") // 리액트/플러터 CORS 허용
 public class TodoController {
     private final TodoService todoService;
+
+    // 전체 조회
+    @GetMapping
+    public ResponseEntity< ? > findAll(){
+        return ResponseEntity.ok(todoService.findAll() );
+    }
+    // 개별삭제
+    @DeleteMapping
+    public ResponseEntity< ? > delete(@RequestParam int id){
+        return ResponseEntity.ok(todoService.delete(id));
+    }
+
+    // 개별 조회
+    @GetMapping("/detail")
+    public ResponseEntity< ? > findById(@RequestParam int id){
+        return ResponseEntity.ok(todoService.findById(id));
+    }
+
+    // 개별 수정
+    @PutMapping
+    public ResponseEntity< ? > update(@RequestBody TodoDto todoDto){
+        return ResponseEntity.ok(todoService.update(todoDto) );
+    }
+
 
     // [1] TodoRepository 2-1 , 3-1
     // http://localhost:8080/api/todo/query1?title=책 읽기
